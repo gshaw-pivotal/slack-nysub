@@ -1,0 +1,7 @@
+---
+applications:
+- name: nysub
+  memory: 384M
+  buildpack: java_buildpack
+  instances: 1
+  path: target/nysub-slackbot-0.0.1-SNAPSHOT.jar
