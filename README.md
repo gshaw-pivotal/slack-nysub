@@ -5,7 +5,7 @@ A slackbot that you can ask for the current status of the subway line(s); includ
 ## Getting Started ###
 
 ```
-    git clone https://github.com/gshaw-pivotal/slack-nysub
+    git clone https://github.com/gshaw-pivotal/slack-nysub.git
 ```
 
 ## Integration with Slack ##
