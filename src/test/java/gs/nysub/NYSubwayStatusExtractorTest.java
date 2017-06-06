@@ -3,9 +3,9 @@ package gs.nysub;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 
@@ -101,6 +101,12 @@ public class NYSubwayStatusExtractorTest {
     }
 
     private void setupStatusInput() throws IOException {
-        status = new String(Files.readAllBytes((Paths.get("D:\\Workspace\\nysub-slackbot\\src\\test\\resources\\SampleStatusResponse.txt"))));
+        status = new String(
+            Files.readAllBytes(
+                new File(
+                    this.getClass().getResource("/SampleStatusResponse.txt").getFile()
+                ).toPath()
+            )
+        );
     }
 }
