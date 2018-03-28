@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication(scanBasePackages = {"me.ramswaroop.jbot", "io.pivotal"})
+@SpringBootApplication(scanBasePackages = {"me.ramswaroop.jbot"})
 public class NysubSlackbotApplication {
 
 	public static void main(String[] args) {
