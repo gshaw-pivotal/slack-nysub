@@ -1,4 +1,4 @@
-package gs.nysub;
+package gs.nysub.models;
 
 import lombok.Builder;
 import lombok.Data;

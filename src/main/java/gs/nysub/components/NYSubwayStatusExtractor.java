@@ -1,5 +1,6 @@
-package gs.nysub;
+package gs.nysub.components;
 
+import gs.nysub.models.SubwayLineInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

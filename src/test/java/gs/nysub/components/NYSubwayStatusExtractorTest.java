@@ -1,4 +1,4 @@
-package gs.nysub;
+package gs.nysub.components;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,6 @@
-package gs.nysub;
+package gs.nysub.controllers;
 
+import gs.nysub.components.NYSubwayService;
 import me.ramswaroop.jbot.core.slack.SlackService;
 import me.ramswaroop.jbot.core.slack.models.User;
 import org.junit.Before;
