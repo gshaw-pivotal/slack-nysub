@@ -15,8 +15,6 @@ import org.springframework.boot.test.rule.OutputCapture;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.Arrays;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
@@ -44,14 +42,11 @@ public class NYSubBotTest {
 
     @Before
     public void init() {
-        // set user
         User user = new User();
         user.setName("nysub");
         user.setId("UEADGH12S");
-        // set rtm
-        when(slackService.getDmChannels()).thenReturn(Arrays.asList("D1E79BACV", "C0NDSV5B8"));
+
         when(slackService.getCurrentUser()).thenReturn(user);
-        when(slackService.getWebSocketUrl()).thenReturn("");
     }
 
     @Test
