@@ -3,6 +3,7 @@ package gs.nysub.components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -16,6 +17,10 @@ public class NYSubwayService {
 
     @Autowired
     private SubwayLines subwayLines;
+
+    public List<String> processWebRequest() {
+        return nySubwayStatusRequestProcessor.currentStatusAll();
+    }
 
     public String processRequest(String userRequest) {
         if (userRequest.toLowerCase().contains("uptime")) {

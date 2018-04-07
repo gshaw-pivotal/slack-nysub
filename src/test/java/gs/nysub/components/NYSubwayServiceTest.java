@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
@@ -43,6 +44,15 @@ public class NYSubwayServiceTest {
         when(nySubwayStatusRequestProcessor.currentStatus("W")).thenReturn("Good Service");
 
         when(nySubwayStatusRequestProcessor.currentStatusAll()).thenReturn(statuses);
+    }
+
+    @Test
+    public void serviceReceiveWebBasedStatusRequest_respondsWithAListOfAllLinesAndTheirStatus() {
+        List<String> response = nySubwayService.processWebRequest();
+
+        assertThat(response, equalTo(statuses));
+
+        verify(nySubwayStatusRequestProcessor).currentStatusAll();
     }
 
     @Test
