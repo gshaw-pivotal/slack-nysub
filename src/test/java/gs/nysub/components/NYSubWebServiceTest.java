@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -20,6 +21,9 @@ public class NYSubWebServiceTest {
 
     @Mock
     private DateTimeService dateTimeService;
+
+    @Mock
+    private NYSubwayService nySubwayService;
 
     @InjectMocks
     private NYSubWebService nySubWebService;
@@ -56,5 +60,36 @@ public class NYSubWebServiceTest {
         nySubWebService.generateStatus();
 
         verify(dateTimeService).getDateTime();
+    }
+
+    @Test
+    public void webServiceCallsTheSubwayService() {
+        nySubWebService.generateStatus();
+
+        verify(nySubwayService).processWebRequest();
+    }
+
+    @Test
+    public void webServiceReturnsFormattedLineStatus() {
+        when(nySubwayService.processWebRequest()).thenReturn(generateSimpleSampleSubwayServiceResponse());
+
+        String generatedResponse = nySubWebService.generateStatus();
+
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">1</span>"));
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">GOOD SERVICE</span>"));
+
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">2</span>"));
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">GOOD SERVICE</span>"));
+
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">3</span>"));
+        assertTrue(generatedResponse.contains("<span style=\"font-weight:bold\">GOOD SERVICE</span>"));
+    }
+
+    private List<String> generateSimpleSampleSubwayServiceResponse() {
+        return Arrays.asList(
+                "*1*: *GOOD SERVICE*\n------\n",
+                "*2*: *GOOD SERVICE*\n------\n",
+                "*3*: *GOOD SERVICE*\n------\n"
+        );
     }
 }
