@@ -45,18 +45,22 @@ public class NYSubWebService {
             String line = lineStatusList.get(index).replaceAll("\n------\n", "");
             String[] lineParts = line.split("\\*: \\*");
             formattedLineStatusList.add(
-                    buildLineStatus(
+                    "<tr>" + buildLineStatus(
                             lineParts[0].replaceAll("\\*", ""),
                             lineParts[1].replaceAll("\\*", "")
-                    )
+                    ) + "</tr>"
             );
         }
 
-        return formattedLineStatusList.stream().collect(Collectors.joining());
+        return "<table border=\"1px solid black\">" + tableHeader() + formattedLineStatusList.stream().collect(Collectors.joining()) + "</table>";
     }
 
     private String buildLineStatus(String lineID, String lineStatusSummary) {
-        return "<span style=\"font-weight:bold\">" + lineID + "</span> " +
-                "<span style=\"font-weight:bold\">" + lineStatusSummary + "</span><br/>";
+        return "<td><span style=\"font-weight:bold\">" + lineID + "</span></td> " +
+                "<td><span style=\"font-weight:bold\">" + lineStatusSummary + "</span></td>";
+    }
+
+    private String tableHeader() {
+        return "<tr><th>Line</th><th>Summary</th></tr>";
     }
 }
